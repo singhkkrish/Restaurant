@@ -39,7 +39,7 @@ const Tables = () => {
           {
             resData?.data.data.map((table) => {
               return (
-                <TableCard key={table.id} id={table.id} name={table.name} status={table.status} initials={table?.currentOrder?.customerDetails.name} seats={table.seats} />
+                <TableCard  id={table._id} name={table.tableNo} status={table.status} initials={table?.currentOrder?.customerDetails.name} seats={table.seats} />
               )
             })
           }
