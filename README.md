@@ -32,4 +32,3 @@ A full-featured **Restaurant POS System** built using the **MERN Stack** to stre
 | ⚡ **Data Fetching & Caching** | React Query            |
 | 🔗 **APIs**              | RESTful APIs                   |
 
----
