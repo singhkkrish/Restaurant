@@ -10,7 +10,7 @@ const PORT=config.PORT ;
 connectDB();
 app.use(cors({
     credentials:true,
-    origin: ['http://localhost:5173']
+    origin: ['https://restaurant-pos-frontend-8oj5.onrender.com']
 }))
 app.use(express.json());//to parse json data
 app.use(cookieParser())
