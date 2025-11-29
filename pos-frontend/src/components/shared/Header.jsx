@@ -16,21 +16,50 @@ const Header = () => {
   const userData = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const logoutMutation = useMutation({
-    mutationFn: () => logout(),
-    onSuccess: (data) => {
-      console.log(data);
-      dispatch(removeUser());
-      navigate("/auth");
-    },
-    onError: (error) => {
-      console.log(error);
-    },
-  });
+  // const logoutMutation = useMutation({
+  //   mutationFn: () => logout(),
+  //   onSuccess: (data) => {
+  //     console.log(data);
+  //     dispatch(removeUser());
+  //     navigate("/auth");
+  //   },
+  //   onError: (error) => {
+  //     console.log(error);
+  //   },
+  // });
 
-  const handleLogout = () => {
-    logoutMutation.mutate();
-  };
+  // const handleLogout = () => {
+  //   logoutMutation.mutate();
+  // };
+  const logoutMutation = useMutation({
+  mutationFn: () => logout(),
+  onSuccess: (data) => {
+    console.log(data);
+    
+    // Clear Redux state
+    dispatch(removeUser());
+    
+    // Clear any localStorage/sessionStorage (if you're using it)
+    localStorage.clear();
+    sessionStorage.clear();
+    
+    // IMPORTANT: Use hard redirect instead of navigate
+    window.location.href = "/auth";
+    // OR: window.location.replace("/auth");
+  },
+  onError: (error) => {
+    console.log(error);
+    // Even on error, clear state and redirect
+    dispatch(removeUser());
+    localStorage.clear();
+    sessionStorage.clear();
+    window.location.href = "/auth";
+  },
+});
+
+const handleLogout = () => {
+  logoutMutation.mutate();
+};
   return (
     <header className="flex justify-between items-center py-4 px-8 bg-[#1a1a1a]">
       {/* Logo Section */}
