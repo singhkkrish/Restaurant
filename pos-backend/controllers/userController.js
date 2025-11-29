@@ -70,7 +70,12 @@ const getUserData= async (req, res, next) => {
 }
 const logout= async (req, res, next) => {
     try {
-        res.clearCookie('accessToken');
+        res.clearCookie('accessToken', {
+            httpOnly: true,
+            sameSite: 'none',
+            secure: true,
+            path: '/'  // Important: must match the path when cookie was set
+        });
         res.status(200).json({success: true, message: "User logout successfully!"});        
     } catch (error) {
         next(error);
